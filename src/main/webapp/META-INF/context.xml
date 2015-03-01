@@ -1,0 +1,8 @@
+<Context docBase="healthish" path="/healthish" reloadable="false">
+    <Resource name="healthishDS"
+              type="javax.sql.DataSource" auth="Container"
+              driverClassName="com.mysql.jdbc.Driver"
+              url="jdbc:mysql://localhost/healthish"
+              username="root" password=""
+              maxActive="20" maxIdle="10" maxWait="-1" />
+</Context>
