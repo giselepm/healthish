@@ -26,6 +26,14 @@ public class Doctor {
     @Column
     private String zip;
 
+    public Doctor() {
+    }
+
+    public Doctor(Integer id, String name) {
+        this.id = id.longValue();
+        this.name = name;
+    }
+
     public Long getId() {
         return id;
     }

@@ -7,7 +7,7 @@
 
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>classpath:/META-INF/spring/beans.xml</param-value>
+        <param-value>classpath:/META-INF/spring/persistence.xml</param-value>
     </context-param>
 
     <listener>
