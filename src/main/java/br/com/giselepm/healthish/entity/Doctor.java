@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table
-public class Doctor {
+public class Doctor implements IEntity<Long> {
 
     @Id
     @Column
@@ -80,5 +80,22 @@ public class Doctor {
 
     public void setZip(String zip) {
         this.zip = zip;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Doctor doctor = (Doctor) o;
+
+        if (id != null ? !id.equals(doctor.id) : doctor.id != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return id != null ? id.hashCode() : 0;
     }
 }
