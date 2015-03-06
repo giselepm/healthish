@@ -15,13 +15,13 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/")
-public class HomeController {
+public class DoctorController {
 
-    private Logger log = LoggerFactory.getLogger(HomeController.class);
+    private Logger log = LoggerFactory.getLogger(DoctorController.class);
     private IDoctorDao doctorDao;
 
     @Autowired
-    public HomeController(IDoctorDao doctorDao) {
+    public DoctorController(IDoctorDao doctorDao) {
         this.doctorDao = doctorDao;
     }
 
