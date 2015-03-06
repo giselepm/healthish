@@ -1,8 +1,8 @@
-@import url("../../../../../../../Downloads/displaytag-1-2.2/displaytag-examples/src/main/webapp/css/displaytag.css");
+@import url("displaytag.css");
 
-@import url("../../../../../../../Downloads/displaytag-1-2.2/displaytag-examples/src/main/webapp/css/alternative.css");
+@import url("alternative.css");
 
-@import url("../../../../../../../Downloads/displaytag-1-2.2/displaytag-examples/src/main/webapp/css/teststyles.css");
+@import url("teststyles.css");
 
 body,input,select,td,textarea {
 	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
@@ -80,7 +80,7 @@ ul#showsource {
 	width: 100px;
 	height: 33px;
 	list-style-type: none;
-	background-image: url("../../../../../../../Downloads/displaytag-1-2.2/displaytag-examples/src/main/webapp/img/viewsource.png");
+	background-image: url("../img/viewsource.png");
 	background-repeat: no-repeat;
 	margin-bottom: -30px;
 	text-align: center;

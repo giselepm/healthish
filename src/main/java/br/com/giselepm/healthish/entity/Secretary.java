@@ -87,9 +87,9 @@ public class Secretary implements IEntity<Long> {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Secretary doctor = (Secretary) o;
+        Secretary secretary = (Secretary) o;
 
-        if (id != null ? !id.equals(doctor.id) : doctor.id != null) return false;
+        if (id != null ? !id.equals(secretary.id) : secretary.id != null) return false;
 
         return true;
     }

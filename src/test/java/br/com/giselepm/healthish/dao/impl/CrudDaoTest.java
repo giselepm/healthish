@@ -3,6 +3,7 @@ package br.com.giselepm.healthish.dao.impl;
 import br.com.giselepm.healthish.DatabaseUnitTest;
 import br.com.giselepm.healthish.dao.ICrudDao;
 import br.com.giselepm.healthish.entity.Doctor;
+import br.com.giselepm.healthish.entity.Secretary;
 import org.apache.commons.beanutils.BeanToPropertyValueTransformer;
 import org.apache.commons.collections.CollectionUtils;
 import org.junit.Test;
@@ -35,6 +36,7 @@ public class CrudDaoTest extends DatabaseUnitTest {
         assertNull(d);
     }
 
+
     @Test
     public void findAllDoctorsReturns2Instances() throws Exception {
         List<Doctor> allDoctors = crudDao.findAll(Doctor.class);
@@ -49,6 +51,40 @@ public class CrudDaoTest extends DatabaseUnitTest {
         assertTrue(allNames.containsAll(new ArrayList<Object>(){{
             add("PHIL");
             add("ARNOLD");
+        }}));
+    }
+
+    @Test
+    public void whenIGetByClassSecretaryAndId1ItReturnsMaria() throws Exception {
+        Secretary s = crudDao.get(Secretary.class, 1L);
+
+        assertNotNull(s);
+        assertEquals(1L, s.getId().longValue());
+        assertEquals("MARIA", s.getName());
+    }
+
+    @Test
+    public void whenIGetByClassSecretaryAndId4ItReturnsNull() throws Exception {
+        Secretary s = crudDao.get(Secretary.class, 4L);
+
+        assertNull(s);
+    }
+
+
+    @Test
+    public void findAllSecretariesReturns2Instances() throws Exception {
+        List<Secretary> allSecretaries = crudDao.findAll(Secretary.class);
+        Collection<Long> allIds = CollectionUtils.collect(allSecretaries, new BeanToPropertyValueTransformer("id"));
+        Collection<Long> allNames = CollectionUtils.collect(allSecretaries, new BeanToPropertyValueTransformer("name"));
+
+        assertEquals(2, allSecretaries.size());
+        assertTrue(allIds.containsAll(new ArrayList<Object>() {{
+            add(1L);
+            add(2L);
+        }}));
+        assertTrue(allNames.containsAll(new ArrayList<Object>(){{
+            add("MARIA");
+            add("LUANA");
         }}));
     }
 }

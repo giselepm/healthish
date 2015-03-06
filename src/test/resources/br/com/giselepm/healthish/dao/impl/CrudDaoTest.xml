@@ -12,4 +12,15 @@
         name="ARNOLD"
         />
 
+    <Secretary
+        ID="1"
+        name="MARIA"
+        />
+
+<Secretary
+        ID="2"
+        name="LUANA"
+        />
+
+
 </dataset>

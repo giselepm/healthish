@@ -6,6 +6,7 @@
 
     <session-factory>
         <mapping class="br.com.giselepm.healthish.entity.Doctor" />
+        <mapping class="br.com.giselepm.healthish.entity.Secretary" />
     </session-factory>
 
 </hibernate-configuration>
