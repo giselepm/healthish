@@ -1,7 +1,7 @@
 package br.com.giselepm.healthish.controller;
 
-import br.com.giselepm.healthish.dao.IDoctorDao;
 import br.com.giselepm.healthish.entity.Doctor;
+import br.com.giselepm.healthish.entity.Patient;
 import br.com.giselepm.healthish.service.ICrudService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,14 +15,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import java.util.List;
 
 @Controller
-@RequestMapping("/doctor")
-public class DoctorController {
+@RequestMapping("/patient")
+public class PatientController {
 
-    private Logger log = LoggerFactory.getLogger(DoctorController.class);
+    private Logger log = LoggerFactory.getLogger(PatientController.class);
     private ICrudService crudService;
 
     @Autowired
-    public DoctorController(ICrudService crudService) {
+    public PatientController(ICrudService crudService) {
         this.crudService = crudService;
     }
 
@@ -30,9 +30,9 @@ public class DoctorController {
     @Transactional(readOnly = true)
     public String printWelcome(ModelMap model) {
         log.info("ENTER printWelcome");
-        List<Doctor> allDoctors = crudService.findAll(Doctor.class);
-        model.addAttribute("allDoctors", allDoctors);
-        return "doctor";
+        List<Patient> allPatients = crudService.findAll(Patient.class);
+        model.addAttribute("allPatients", allPatients);
+        return "patient";
     }
 
 }

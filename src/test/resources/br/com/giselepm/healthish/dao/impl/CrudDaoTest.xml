@@ -17,10 +17,35 @@
         name="MARIA"
         />
 
-<Secretary
+    <Secretary
         ID="2"
         name="LUANA"
         />
+
+    <Patient
+        ID="1"
+        name="Patient 1"
+        />
+
+    <Patient
+        ID="2"
+        name="Patient 2"
+        />
+
+    <Appointment
+            ID="1"
+            appointmentDate="2015-04-02 08:30"
+            doctor="1"
+            patient="2"
+            />
+
+    <Appointment
+            ID="2"
+            appointmentDate="2014-09-02 08:40"
+            doctor="2"
+            patient="2"
+            />
+
 
 
 </dataset>
