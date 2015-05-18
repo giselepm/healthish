@@ -12,9 +12,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.*;
 
 public class CrudServiceTest {
 
@@ -56,5 +57,38 @@ public class CrudServiceTest {
         Doctor d = crudService.get(Doctor.class, 1L);
 
         assertEquals(d, new Doctor(1, "Steve"));
+    }
+
+    @Test
+    public void saveCallsDaoAndReturnsWhateverDaoReturns() throws Exception {
+        Doctor d = new Doctor();
+
+        d.setName("name");
+        d.setStreet("street");
+        d.setStreetNo("streetNo");
+        d.setCity("city");
+        d.setZip("10829");
+
+        when(crudDaoMock.save(d)).thenReturn(new Doctor(1, "other name"));
+
+        Doctor doctorReturn = crudService.save(d);
+
+        assertEquals(doctorReturn, new Doctor(1, "other name"));
+    }
+
+    @Test
+    public void updateCallsDaoAndReturnsWhateverDaoReturns() throws Exception {
+        Doctor d = new Doctor(1, "name");
+        when(crudDaoMock.update(d)).thenReturn(new Doctor(1, "other name"));
+
+        Doctor doctorReturn = crudService.update(d);
+
+        assertEquals(doctorReturn, new Doctor(1, "other name"));
+    }
+
+    @Test
+    public void deleteCallsDao() throws Exception {
+        crudService.delete(any(Doctor.class));
+        verify(crudDaoMock, times(1)).delete(any(Doctor.class));
     }
 }

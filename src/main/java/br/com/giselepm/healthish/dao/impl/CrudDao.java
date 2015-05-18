@@ -30,6 +30,22 @@ public class CrudDao implements ICrudDao {
         return getCurrentSession().createCriteria(entityClass).list();
     }
 
+    @Override
+    public <T extends IEntity<? extends Serializable>> T save(T entityClass) {
+        getCurrentSession().save(entityClass);
+        return entityClass;
+    }
+   @Override
+    public <T extends IEntity<? extends Serializable>> T update(T entityClass) {
+        getCurrentSession().update(entityClass);
+        return entityClass;
+    }
+
+    @Override
+    public <T extends IEntity<? extends Serializable>> void delete(T entityClass) {
+        getCurrentSession().delete(entityClass);
+    }
+
     private Session getCurrentSession(){
         return sessionFactory.getCurrentSession();
     }

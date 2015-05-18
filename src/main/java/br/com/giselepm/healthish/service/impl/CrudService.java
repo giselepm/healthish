@@ -30,4 +30,22 @@ public class CrudService implements ICrudService {
     public <T extends IEntity<? extends Serializable>> List<T> findAll(Class<T> entityClass) {
         return crudDao.findAll(entityClass);
     }
+
+    @Override
+    @Transactional(readOnly = false)
+    public <T extends IEntity<? extends Serializable>> T save(T entityClass) {
+        return crudDao.save(entityClass);
+    }
+
+ @Override
+    @Transactional(readOnly = false)
+    public <T extends IEntity<? extends Serializable>> T update(T entityClass) {
+        return crudDao.update(entityClass);
+    }
+
+    @Override
+    @Transactional(readOnly = false)
+    public <T extends IEntity<? extends Serializable>> void delete(T entityClass) {
+        crudDao.delete(entityClass);
+    }
 }

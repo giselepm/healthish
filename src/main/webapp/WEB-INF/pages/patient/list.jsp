@@ -10,7 +10,7 @@
 </head>
 <body>
 
-<h1>All catalogued patient</h1>
+<h1>All catalogued patients</h1>
 
 
 <display:table name="allPatients">

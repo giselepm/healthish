@@ -1,6 +1,5 @@
 package br.com.giselepm.healthish.controller;
 
-import br.com.giselepm.healthish.entity.Doctor;
 import br.com.giselepm.healthish.entity.Patient;
 import br.com.giselepm.healthish.service.ICrudService;
 import org.slf4j.Logger;
@@ -28,11 +27,10 @@ public class PatientController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/list")
     @Transactional(readOnly = true)
-    public String printWelcome(ModelMap model) {
-        log.info("ENTER printWelcome");
+    public String list(ModelMap model) {
         List<Patient> allPatients = crudService.findAll(Patient.class);
         model.addAttribute("allPatients", allPatients);
-        return "patient";
+        return "patient/list";
     }
 
 }

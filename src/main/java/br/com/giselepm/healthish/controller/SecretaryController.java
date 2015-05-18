@@ -1,6 +1,5 @@
 package br.com.giselepm.healthish.controller;
 
-import br.com.giselepm.healthish.dao.ICrudDao;
 import br.com.giselepm.healthish.entity.Secretary;
 import br.com.giselepm.healthish.service.ICrudService;
 import org.slf4j.Logger;
@@ -31,11 +30,10 @@ public class SecretaryController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/list")
     @Transactional(readOnly = true)
-    public String printWelcome(ModelMap model) {
-        log.info("ENTER Secretary");
+    public String list(ModelMap model) {
         List<Secretary> allSecretaries = crudService.findAll(Secretary.class);
         model.addAttribute("allSecretaries", allSecretaries);
-        return "secretary";
+        return "secretary/list";
     }
 
 }

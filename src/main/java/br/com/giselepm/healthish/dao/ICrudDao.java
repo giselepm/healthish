@@ -16,4 +16,10 @@ public interface ICrudDao {
 
     <T extends IEntity<? extends Serializable>> List<T> findAll(
             final Class<T> entityClass);
+
+    <T extends IEntity<? extends Serializable>> T save(final T entityClass);
+
+    <T extends IEntity<? extends Serializable>> T update(final T entityClass);
+
+    <T extends IEntity<? extends Serializable>> void delete(final T entityClass);
 }
