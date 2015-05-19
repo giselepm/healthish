@@ -2,7 +2,7 @@
 
 <html>
 <body>
-	<h1>New doctor</h1>
+	<h1>Edit doctor</h1>
     <form action="/healthish/doctor/saveEdit.do" method="POST">
         <input id="id" name="id" type="hidden" value="${doctor.id}"/>
         <ul>

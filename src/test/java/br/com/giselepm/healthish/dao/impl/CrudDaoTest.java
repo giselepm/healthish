@@ -9,6 +9,7 @@ import br.com.giselepm.healthish.entity.Secretary;
 import org.apache.commons.beanutils.BeanToPropertyValueTransformer;
 import org.apache.commons.collections.CollectionUtils;
 import org.hibernate.SessionFactory;
+import org.hibernate.StaleStateException;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.unitils.spring.annotation.SpringBeanByType;
@@ -210,7 +211,7 @@ public class CrudDaoTest extends DatabaseUnitTest {
     public void deleteRemovesARecordFromDB() throws Exception {
         crudDao.delete(new Doctor(1, "PHIL"));
 
-        Doctor d = crudDao.get(Doctor.class, 1L);
+        Doctor d = (Doctor) sessionFactory.getCurrentSession().get(Doctor.class, 1L);
 
         assertNull(d);
 
@@ -224,25 +225,10 @@ public class CrudDaoTest extends DatabaseUnitTest {
 
     }
 
-    @Test
-    @Ignore
+    @Test(expected = StaleStateException.class)
     public void whenIDeleteARecordInexistentInDB() throws Exception {
-        crudDao.delete(new Doctor(3, "JAMES")); //como testo isso?? Pq ele t[a dando erro?
-
-        List<Doctor> allDoctors = crudDao.findAll(Doctor.class);
-        Collection<Long> allIds = CollectionUtils.collect(allDoctors, new BeanToPropertyValueTransformer("id"));
-        Collection<Long> allNames = CollectionUtils.collect(allDoctors, new BeanToPropertyValueTransformer("name"));
-
-        assertEquals(2, allDoctors.size());
-        assertTrue(allIds.containsAll(new ArrayList<Object>() {{
-            add(1L);
-            add(2L);
-        }}));
-        assertTrue(allNames.containsAll(new ArrayList<Object>(){{
-            add("PHIL");
-            add("ARNOLD");
-        }}));
-
+        crudDao.delete(new Doctor(3, "JAMES"));
+        sessionFactory.getCurrentSession().flush();
     }
 
     @Test
@@ -264,23 +250,14 @@ public class CrudDaoTest extends DatabaseUnitTest {
         }}));
     }
 
-    @Test
-    @Ignore
+    @Test(expected = StaleStateException.class)
     public void whenITrytoUpdateARecordInexistentInDB() throws Exception {
-        Doctor d = new Doctor(); //como eu testo isso??
+        Doctor d = new Doctor();
 
         d.setId(3L);
         d.setName("New name");
 
         crudDao.update(d);
-
-        List<Doctor> doctorsInDB = sessionFactory.getCurrentSession().createCriteria(Doctor.class).list();
-        Collection<String> allDoctorsNamesInDB = CollectionUtils.collect(doctorsInDB, new BeanToPropertyValueTransformer("name"));
-
-        assertEquals(2, doctorsInDB.size());
-        assertTrue(allDoctorsNamesInDB.containsAll(new ArrayList<Object>() {{
-            add("PHIL");
-            add("ARNOLD");
-        }}));
+        sessionFactory.getCurrentSession().flush();
     }
 }

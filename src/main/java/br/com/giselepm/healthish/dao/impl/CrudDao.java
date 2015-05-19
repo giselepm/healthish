@@ -35,9 +35,11 @@ public class CrudDao implements ICrudDao {
         getCurrentSession().save(entityClass);
         return entityClass;
     }
-   @Override
+
+    @Override
     public <T extends IEntity<? extends Serializable>> T update(T entityClass) {
         getCurrentSession().update(entityClass);
+//        getCurrentSession().flush();
         return entityClass;
     }
 
