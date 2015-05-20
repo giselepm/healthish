@@ -37,8 +37,7 @@ public class DoctorController {
     @RequestMapping(method = RequestMethod.GET, value = "/create")
     @Transactional(readOnly = true)
     public String create(ModelMap model) {
-        model.addAttribute("action", "Create");
-        return "doctor/show";
+        return "doctor/create";
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/saveCreate")
@@ -53,8 +52,7 @@ public class DoctorController {
     public String delete(Long id, ModelMap model) {
         Doctor doctor = crudService.get(Doctor.class, id);
         model.addAttribute("doctor", doctor);
-        model.addAttribute("action", "Delete");
-        return "doctor/show";
+        return "doctor/delete";
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/saveDelete")
@@ -75,8 +73,7 @@ public class DoctorController {
     public String edit(Long id, ModelMap model) {
         Doctor doctor = crudService.get(Doctor.class, id);
         model.addAttribute("doctor", doctor);
-        model.addAttribute("action", "Edit");
-        return "doctor/show";
+        return "doctor/edit";
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/saveEdit")
