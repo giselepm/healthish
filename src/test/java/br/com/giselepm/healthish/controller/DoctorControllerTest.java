@@ -57,8 +57,7 @@ public class DoctorControllerTest {
     public void createRedirectsToTheCreatePage() throws Exception {
         ModelMap modelMap = new ModelMap();
         String page = doctorController.create(modelMap);
-        assertEquals(modelMap.get("action"), "Create");
-        assertEquals(page, "doctor/show");
+        assertEquals(page, "doctor/create");
     }
 
     @Test
@@ -91,8 +90,7 @@ public class DoctorControllerTest {
         String page = doctorController.delete(1L, modelMap);
 
         assertEquals(modelMap.get("doctor"), new Doctor(1, "Doctor Name"));
-        assertEquals(modelMap.get("action"), "Delete");
-        assertEquals(page, "doctor/show");
+        assertEquals(page, "doctor/delete");
 
     }
 
@@ -155,8 +153,7 @@ public class DoctorControllerTest {
         String page = doctorController.edit(1L, modelMap);
 
         assertEquals(modelMap.get("doctor"), new Doctor(1, "Doctor Name"));
-        assertEquals(modelMap.get("action"), "Edit");
-        assertEquals(page, "doctor/show");
+        assertEquals(page, "doctor/edit");
 
     }
 

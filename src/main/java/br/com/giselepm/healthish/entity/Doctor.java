@@ -15,6 +15,9 @@ public class Doctor implements IEntity<Long> {
     private String name;
 
     @Column
+    private String registerNumber;
+
+    @Column
     private String street;
 
     @Column
@@ -49,6 +52,11 @@ public class Doctor implements IEntity<Long> {
     public void setName(String name) {
         this.name = name;
     }
+
+
+    public String getRegisterNumber() { return registerNumber; }
+
+    public void setRegisterNumber(String registerNumber) { this.registerNumber = registerNumber; }
 
     public String getStreet() {
         return street;
